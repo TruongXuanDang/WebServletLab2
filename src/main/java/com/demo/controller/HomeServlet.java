@@ -23,7 +23,11 @@ public class HomeServlet extends HttpServlet {
     protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("USER");
-        request.setAttribute("username",user.getName());
+        if(user!=null)
+        {
+            request.setAttribute("username",user.getName());
+        }
+
         request.getRequestDispatcher("index.jsp").forward(request,response);
     }
 }
